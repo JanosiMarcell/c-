@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
-namespace jelszovalami
+namespace _20230125
 {
     class Program
     {
         static bool Szamjegy(string jsz)
         {
             bool s = false;
-            string chs = "0123456789";
+            string chs = "01234456789";
             int i = 0;
-            while ((!s)&& (i < chs.Length))
+            while ((! s ) && (i< chs.Length))
             {
                 if (jsz.IndexOf(chs[i])>=0)
                 {
@@ -23,27 +24,29 @@ namespace jelszovalami
             }
             return (s);
         }
+
         static bool Kisbetu(string jsz)
         {
             bool s = false;
-            string chs = "aábcdeéfghiíjklmnopoóöőüűuúpqrstvwxyz";
+            string chs = "aábcdeéfghijklmnoóöőpqrstuúüűvxyz";
             int i = 0;
-            while ((!s) && (i < chs.Length))
+            while ((! s) && (i<chs.Length))
             {
                 if (jsz.IndexOf(chs[i]) >= 0)
                 {
-                     s = true;
+                    s = true;
                 }
                 i++;
             }
             return (s);
         }
-        static bool Nagyetu(string jsz)
+
+        static bool Nagybetu(string jsz)
         {
             bool s = false;
-            string chs = "AÁBCDEÉFGHIÍJKLMNOÓÖŐÜŰPQRSTUÚVWXYZ";
+            string chs = "AÁBCDEÉFGHIJKLMNOÓöőPQRSTUÚÜŰVXYZ";
             int i = 0;
-            while ((!s) && (i < chs.Length))
+            while ((! s) && (i < chs.Length))
             {
                 if (jsz.IndexOf(chs[i]) >= 0)
                 {
@@ -55,10 +58,33 @@ namespace jelszovalami
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("A jelszó: ");
+            Console.WriteLine("A jelszü: ");
             string jelszo = Console.ReadLine();
-            
-        }
+            Console.WriteLine("Van-e számjegy: {0}", Szamjegy(jelszo));
+            Console.WriteLine("Van-e kisbetű: {0}", Kisbetu(jelszo));
+            Console.WriteLine("Van-e nagybetű: {0}", Nagybetu(jelszo));
 
+            int hossz = jelszo.Length;
+            long s = 0;
+            if (Szamjegy(jelszo))
+            {
+                s += 10;
+            }
+            if (Kisbetu(jelszo))
+            {
+                s += 34;
+            }
+            if (Nagybetu(jelszo))
+            {
+                s += 34;
+            }
+            long d0 = Mer(4) * s;
+
+            long muveletek = Convert.ToInt64(Math.Pow(s, hossz));
+
+            Console.WriteLine("Az időtényező: {0}", d0);
+
+            Console.ReadKey();
+        }
     }
 }
