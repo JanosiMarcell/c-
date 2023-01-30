@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace reason567whyiwanttokillmyself
+{
+    class Program
+    {
+        static int[] a;
+        static void feltolt()
+        {
+            for (int i = 1; i <= 10; i++)
+            {
+                a[i]=i;
+                for (int j = 0; j <= 10; j++)
+                {
+                    if (i > 0) a[i]=i * j;
+                    else a[i]=j;
+                }
+            }
+        }
+        static void ment()
+        {
+            string s = "";
+            s += "<!DOCTYPE htlm>\n";
+            s += "<html lang='hu'>\n";
+            s += "<head>\n";
+
+            s += "<meta charset='utf8'\n";
+            s += "<title>SZÁMOK</title>\n";
+            s += "<meta name='Author' content='Jánosi boss Marcell'>\n";
+            s += "<meta name='Generator' content='program'>\n";
+
+
+            s += "</head>\n";
+            s += "<body>\n";
+            for (int j = 0; j < 10; j++)
+            {
+                s += "<td>" + a[j].ToString() + "</td>\n";
+            }
+            s += "</body>\n";
+
+            StreamWriter sw = new StreamWriter(@"C:\\Users\\janosim\\Desktop\\szamok.html");
+            sw.WriteLine(s+'\t');
+            sw.Close();
+        }
+            static void Main(string[] args)
+        {
+            a = new int[100];
+            feltolt();
+            ment();
+            Console.ReadKey();
+            //Jánosi Marcell , Monostori Róbert
+        }
+    }
+}
